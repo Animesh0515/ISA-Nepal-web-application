@@ -1877,9 +1877,10 @@
     <Content Include="fontawesome\webfonts\fa-solid-900.ttf" />
     <Content Include="fontawesome\webfonts\fa-solid-900.woff" />
     <Content Include="fontawesome\webfonts\fa-solid-900.woff2" />
+    <Content Include="images\isa.png" />
     <Content Include="sweet alert\sweetalert2.all.js" />
     <Content Include="Login.aspx" />
-    <Content Include="WebForm2.aspx" />
+    <Content Include="Bookings.aspx" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="images\adminuser.png" />
     <Content Include="Scripts\bootstrap.js" />
@@ -1943,6 +1944,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Model\CourtBookingModel.cs" />
     <Compile Include="Model\DatabaseConnectionModel.cs" />
     <Compile Include="Model\LoginModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1975,12 +1977,12 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
-    <Compile Include="WebForm2.aspx.cs">
-      <DependentUpon>WebForm2.aspx</DependentUpon>
+    <Compile Include="Bookings.aspx.cs">
+      <DependentUpon>Bookings.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="WebForm2.aspx.designer.cs">
-      <DependentUpon>WebForm2.aspx</DependentUpon>
+    <Compile Include="Bookings.aspx.designer.cs">
+      <DependentUpon>Bookings.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

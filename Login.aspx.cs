@@ -26,7 +26,7 @@ namespace AdminPortal
             loginModel = loginModellst.Where(x => x.Role == "admin" && x.Username== adminid && x.Password== password).FirstOrDefault();
             if(loginModel != null)
             {
-                Response.Redirect("Webform2.aspx");
+                Response.Redirect("Bookings.aspx");
             }
             else
             {
