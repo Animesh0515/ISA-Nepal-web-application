@@ -13,6 +13,7 @@ namespace AdminPortal
 {
     public class Global : HttpApplication
     {
+        public static int ID;
         void Application_Start(object sender, EventArgs e)
         {
             DatabaseConnectionModel.Database = ConfigurationManager.AppSettings["Database"];

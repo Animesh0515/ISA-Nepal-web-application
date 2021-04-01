@@ -24,6 +24,7 @@ namespace AdminPortal
                 while(fetch_query.Read())
                 {
                     LoginModel loginModel = new LoginModel();
+                    Global.ID = int.Parse(fetch_query["User_Id"].ToString());
                     loginModel.Role = fetch_query["Role"].ToString();
                     loginModel.Username = fetch_query["Username"].ToString();
                     loginModel.Password = fetch_query["Password"].ToString();
@@ -34,6 +35,7 @@ namespace AdminPortal
             }
             catch(Exception e)
             {
+                Console.WriteLine(e);
                 return null;
             }
 
