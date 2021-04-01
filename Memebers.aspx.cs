@@ -11,17 +11,23 @@ namespace AdminPortal
 {
     public partial class WebForm3 : System.Web.UI.Page
     {
-        string connectionstring = DatabaseConnectionModel.connectionstring();
+        string connectionstring = DatabaseConnectionModel.ConnectionString();
+        bool search = false;
+        int index;
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             if(! this.IsPostBack)
             {
                 this.Bindgrid();
+                
+
             }
 
         }
         private void Bindgrid()
         {
+            int counter = 0;
             List<UserModel> userslst = new List<UserModel>();
             MySqlConnection conn = new MySqlConnection(connectionstring);
             MySqlCommand cmd = conn.CreateCommand();
@@ -39,20 +45,25 @@ namespace AdminPortal
                     users.LastName = data["Last_Name"].ToString();
                     users.Email = data["Email"].ToString();
                     users.PhoneNumber = int.Parse(data["Phone_Number"].ToString());
-                    users.DateofBirth = data["DateOfBirth"].ToString();
+                    DateTime dob = DateTime.Parse(data["DateOfBirth"].ToString());
+                    users.DateofBirth = dob.ToString("yyyy-MM-dd");
                     users.Username = data["Username"].ToString();
                     users.Password = data["Password"].ToString();
                     users.Gender = data["Gender"].ToString();
                     users.Age = int.Parse(data["Age"].ToString());
                     users.Address = data["Address"].ToString();
-                    users.JoinedDate = data["JoinedDate"].ToString();
-                    userslst.Add(users);
+                    DateTime jd= DateTime.Parse(data["JoinedDate"].ToString());
+                    users.JoinedDate = jd.ToString("yyyy-MM-dd");
+                    users.RowIndex = counter++;
+                   userslst.Add(users);
+                    
                 }
                 conn.Close();
                 dgvmemebers.DataSource = userslst;
                 dgvmemebers.DataBind();
+
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine(e);
             }
@@ -60,7 +71,15 @@ namespace AdminPortal
         }
         protected void OnRowEditing(object sender, GridViewEditEventArgs e)
         {
-            dgvmemebers.EditIndex = e.NewEditIndex;
+            if (!search)
+            {
+
+                dgvmemebers.EditIndex = e.NewEditIndex;
+            }
+            else
+            {
+                dgvmemebers.EditIndex = index;
+            }
             this.Bindgrid();
             
         }
@@ -122,7 +141,7 @@ namespace AdminPortal
 
             using (MySqlConnection con = new MySqlConnection(connectionstring))
             {
-                using (MySqlCommand cmd = new MySqlCommand("DELETE FROM Dish WHERE Dish_ID =" + ID))
+                using (MySqlCommand cmd = new MySqlCommand("DELETE FROM users WHERE User_ID =" + ID))
                 {
 
                     cmd.Connection = con;
@@ -134,9 +153,51 @@ namespace AdminPortal
             this.Bindgrid();
         }
 
+        protected void btnAdd_Click(object sender, EventArgs e)
+        {
+            string data = txtsearch.Text;
+            List<UserModel> userslst = new List<UserModel>();
+            MySqlConnection conn = new MySqlConnection(connectionstring);
+            MySqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "Select User_Id, Role, First_Name, Last_Name,  Email, Phone_Number, DateOfBirth, Username, Password, Gender, Age, Address, JoinedDate from users where Upper(First_Name)=Upper('"+data+ "') or Upper(Last_Name)=Upper('" + data + "') or Upper(Username)=Upper('" + data + "') and Role='user'";
+            try
+            {
+                conn.Open();
+                MySqlDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    UserModel users = new UserModel();
+                    users.UserId = int.Parse(rdr["User_Id"].ToString());
+                    users.Role = rdr["Role"].ToString();
+                    users.FirstName = rdr["First_Name"].ToString();
+                    users.LastName = rdr["Last_Name"].ToString();
+                    users.Email = rdr["Email"].ToString();
+                    users.PhoneNumber = int.Parse(rdr["Phone_Number"].ToString());
+                    DateTime dob = DateTime.Parse(rdr["DateOfBirth"].ToString());
+                    users.DateofBirth = dob.ToString("yyyy-MM-dd");
+                    users.Username = rdr["Username"].ToString();
+                    users.Password = rdr["Password"].ToString();
+                    users.Gender = rdr["Gender"].ToString();
+                    users.Age = int.Parse(rdr["Age"].ToString());
+                    users.Address = rdr["Address"].ToString();
+                    DateTime jd = DateTime.Parse(rdr["JoinedDate"].ToString());
+                    users.JoinedDate = jd.ToString("yyyy-MM-dd");
+                    
+                    userslst.Add(users);
+                }
+                conn.Close();
+                dgvmemebers.DataSource = userslst;
+                dgvmemebers.AutoGenerateEditButton = false;
+                dgvmemebers.AutoGenerateDeleteButton = false;
+                dgvmemebers.DataBind();
+                search = true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
 
 
-      
-        
+        }
     }
 }
