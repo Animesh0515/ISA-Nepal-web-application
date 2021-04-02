@@ -1878,10 +1878,12 @@
     <Content Include="fontawesome\webfonts\fa-solid-900.woff" />
     <Content Include="fontawesome\webfonts\fa-solid-900.woff2" />
     <Content Include="images\isa.png" />
+    <Content Include="images\profile.png" />
     <Content Include="sweet alert\sweetalert2.all.js" />
     <Content Include="Login.aspx" />
     <Content Include="Bookings.aspx" />
-    <Content Include="Memebers.aspx" />
+    <Content Include="Members.aspx" />
+    <Content Include="Profile.aspx" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="images\adminuser.png" />
     <Content Include="Scripts\bootstrap.js" />
@@ -1987,12 +1989,19 @@
     <Compile Include="Bookings.aspx.designer.cs">
       <DependentUpon>Bookings.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Memebers.aspx.cs">
-      <DependentUpon>Memebers.aspx</DependentUpon>
+    <Compile Include="Members.aspx.cs">
+      <DependentUpon>Members.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Memebers.aspx.designer.cs">
-      <DependentUpon>Memebers.aspx</DependentUpon>
+    <Compile Include="Members.aspx.designer.cs">
+      <DependentUpon>Members.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Profile.aspx.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile.aspx.designer.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
