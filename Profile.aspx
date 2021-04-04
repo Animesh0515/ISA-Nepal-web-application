@@ -1,6 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Profile.aspx.cs" Inherits="AdminPortal.WebForm4" %>
 
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+     
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">
@@ -12,14 +14,14 @@
                     <br />
                     <%--<asp:Label ID="Label2" runat="server" style="padding-top:20px" Text="Head Coach" ></asp:Label>--%>
                     <div style="padding-left: 130px; padding-top: 20px">
-                        <asp:Image ID="Image1" runat="server" Height="200px" Width="200px" ImageUrl='images/profile.png' />
+                        <asp:Image ID="imgadm" runat="server" Height="200px" Width="200px" />
                     </div>
 
                     <%--<img src="images/profile.png"  style="height:200px; width:350px; padding-left:200px; "/>--%>
                 </div>
                 <div class="card-body">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <asp:Button ID="btnrmvpic" runat="server" CssClass="btn-danger" Text="Remove picture" Width="127px" />
+      <asp:Button ID="btnrmvpic" runat="server" CssClass="btn-danger" Text="Remove picture" Width="127px" OnClick="btnrmvpic_Click" />
 
                     &nbsp;&nbsp;
       <br />
@@ -85,12 +87,14 @@
                         <br />
                         <asp:TextBox ID="txtaddress" runat="server" Width="224px"></asp:TextBox>
                         &nbsp;&nbsp;&nbsp;
-                        <asp:TextBox ID="txtpassword" runat="server" Width="208px"></asp:TextBox>
+                        <asp:TextBox ID="txtpassword" runat="server" Width="208px" TextMode="Password"></asp:TextBox>
                     </div>
                     <div class="card-footer text-muted">
+                        <asp:Button ID="btnedit" class="btn btn-warning" runat="server" Text="Edit" style="width: 87px" OnClick="btnedit_Click" />
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <asp:Button ID="btncancel" class="btn btn-danger" runat="server" Text="Cancel" />
-                        <asp:Button ID="btnedit" class="btn btn-success" runat="server" Text="Edit" style="width: 87px" OnClick="btnedit_Click" />
+                        <asp:Button ID="btncancel" class="btn btn-danger" runat="server" Text="Cancel" OnClick="btncancel_Click" />
+                        <asp:Button ID="btnsaved" class="btn btn-success" runat="server" Text="Save" style="width: 87px" OnClick="btnsaved_Click"  />
+
 
 
                         <%--<a href="#" class="btn btn-danger" id="btncancel" >Cancel</a>--%>

@@ -5,7 +5,7 @@
 <html lang="en">
 <head runat="server">
   
--    <title><%: Page.Title %> - ISA NEPAL</title>
+    <title><%: Page.Title %> - ISA NEPAL</title>
 
     <%--jquery--%>
     <script src="bootstrap/js/jquery-3.3.1.slim.min.js"></script>
@@ -22,6 +22,27 @@
     <link href="fontawesome/css/all.css" rel="stylesheet" />
     <%--customstylesheet css--%>
     <link href="css/customstylesheet.css" rel="stylesheet" />
+
+     <%--seetalert js--%>
+    <script src="sweet%20alert/sweetalert2.all.js"></script>
+    <script>
+        function successmsg() {
+            Swal.fire(
+                'Success',
+                'Your changes has been saved!',
+                'success'
+            )
+        }
+
+        function notifimsg() {
+            Swal.fire(
+                'Success',
+                'Notification has been sent!',
+                'success'
+            )
+        }
+    </script>
+    
 
       <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
@@ -50,7 +71,7 @@
                             <a class="nav-link" href="#">Calendar</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Galary</a>
+                            <a class="nav-link" href="ISAGallery.aspx">Gallery</a>
                         </li>
                          <li class="nav-item active">
                             <a class="nav-link" href="Members.aspx">Members</a>
@@ -62,7 +83,7 @@
                         
                         
                         <li class="nav-item active">
-                            <asp:LinkButton class="nav-link" ID="LinkButton1" runat="server">Notification</asp:LinkButton>
+                            <asp:LinkButton class="nav-link" ID="LinkButton1" runat="server" OnClick="LinkButton1_Click">Notification</asp:LinkButton>
                         </li>
                         <li class="nav-item active">
                             <asp:LinkButton class="nav-link" ID="LinkButton2" runat="server" OnClick="LinkButton2_Click">My Profile</asp:LinkButton>

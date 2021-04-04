@@ -36,6 +36,8 @@ namespace AdminPortal
             txtjoineddate.Enabled = false;
             txtaddress.Enabled = false;
             btncancel.Visible = false;
+            btnedit.Visible = true;
+            btnsaved.Visible = false;
 
             MySqlConnection conn = new MySqlConnection(connectiostring);
             string query = "Select * from users where User_Id='" + Global.ID + "'";
@@ -46,7 +48,7 @@ namespace AdminPortal
             {
                 txtfirstname.Text = rdr["First_Name"].ToString();
                 txtlastname.Text = rdr["Last_Name"].ToString();
-                Label1.Text = txtfirstname.Text +""+ txtlastname.Text;
+                Label1.Text = txtfirstname.Text +" "+ txtlastname.Text;
                 txtemail.Text = rdr["Email"].ToString();
                 txtphoneno.Text = rdr["Phone_Number"].ToString();
                 DateTime dob=Convert.ToDateTime(rdr["DateOfBirth"].ToString());
@@ -57,24 +59,28 @@ namespace AdminPortal
                 DateTime jd=Convert.ToDateTime(rdr["JoinedDate"].ToString());
                 txtjoineddate.Text=jd.ToString("yyyy-MM-dd");
                 txtaddress.Text = rdr["Address"].ToString();
+                imgadm.ImageUrl = rdr["ImageUrl"].ToString();
+                txtpassword.Text = "";
 
             }
+            conn.Close();
         }
         protected void btnsave_Click(object sender, EventArgs e)
         {
-            if(FileImagesave.PostedFile != null)
+            if(FileImagesave.HasFile)
             {
                 string imgfile = Path.GetFileName(FileImagesave.PostedFile.FileName);
-                FileImagesave.SaveAs("D:/New folder/ISA/images/" + imgfile);
+                FileImagesave.SaveAs("G:/FYP/ISA NEPAL(Admin)/AdminPortal/images/" + imgfile);
                 MySqlConnection conn = new MySqlConnection(connectiostring);
                 MySqlCommand cmd = conn.CreateCommand();
-                cmd.CommandText="Update  users set ImagePath='"+ "images/" + imgfile+"' where User_Id='"+ Global.ID+"'";
+                cmd.CommandText="Update  users set ImageUrl='"+ "images/" + imgfile+"' where User_Id='"+ Global.ID+"'";
                 try
                 {
                     conn.Open();
                     cmd.ExecuteNonQuery();
                     ltsave.Text = "Image saved.";
                     conn.Close();
+                    this.GetProfile();
                 }
                 catch(Exception ex)
                 {
@@ -101,7 +107,76 @@ namespace AdminPortal
             txtjoineddate.Enabled = true;
             txtaddress.Enabled = true;
             btncancel.Visible = true;
-            btnedit.Text = "Save";
+            btnsaved.Visible = true;
+            btnedit.Visible = false;
+        }
+
+        protected void btncancel_Click(object sender, EventArgs e)
+        {
+            txtfirstname.Enabled = false;
+            txtlastname.Enabled = false;
+            txtemail.Enabled = false;
+            txtphoneno.Enabled = false;
+            txtdob.Enabled = false;
+            txtusername.Enabled = false;
+            txtpassword.Enabled = false;
+            txtgender.Enabled = false;
+            txtage.Enabled = false;
+            txtjoineddate.Enabled = false;
+            txtaddress.Enabled = false;
+            btncancel.Visible = false;
+            btnsaved.Visible = false;
+
+            btnedit.Visible = true;
+        }
+
+        protected void btnsaved_Click(object sender, EventArgs e)
+        {
+            MySqlConnection conn = new MySqlConnection(connectiostring);
+            string query;
+            if(txtpassword.Text != "" )
+            {
+                 query = "update users set First_Name='" + txtfirstname.Text + "', Last_Name='" + txtlastname.Text + "', Email='" + txtemail.Text + "',Phone_Number='" + txtphoneno.Text + "',DateOfBirth='" + txtdob.Text + "', Username='" + txtusername.Text + "',Password='" + txtpassword.Text + "',Gender='" + txtgender.Text + "',Age='" + txtage.Text + "',Address='" + txtaddress.Text + "',JoinedDate='" + txtjoineddate.Text + "'where User_Id='" + Global.ID + "'";
+            }
+            else
+            {
+                query = "update users set First_Name='" + txtfirstname.Text + "', Last_Name='" + txtlastname.Text + "', Email='" + txtemail.Text + "',Phone_Number='" + txtphoneno.Text + "',DateOfBirth='" + txtdob.Text + "', Username='" + txtusername.Text + "',Gender='" + txtgender.Text + "',Age='" + txtage.Text + "',Address='" + txtaddress.Text + "',JoinedDate='" + txtjoineddate.Text + "'where User_Id='" + Global.ID + "'";
+
+            }
+            MySqlCommand cmd = new MySqlCommand(query, conn);
+            try
+            {
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                conn.Close();
+                ClientScript.RegisterStartupScript(this.GetType(), "randontext", "successmsg()", true);
+
+                this.GetProfile();
+                
+                
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+        }
+
+        protected void btnrmvpic_Click(object sender, EventArgs e)
+        {
+            MySqlConnection conn = new MySqlConnection(connectiostring);
+            MySqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText="Update users set ImageUrl='' where User_Id='" + Global.ID + "' ";
+            try
+            {
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                this.GetProfile();
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
         }
     }
 }

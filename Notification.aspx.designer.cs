@@ -11,53 +11,35 @@ namespace AdminPortal
 {
 
 
-    public partial class WebForm1
+    public partial class WebForm5
     {
 
         /// <summary>
-        /// form1 control.
+        /// dgvnotification control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.WebControls.GridView dgvnotification;
 
         /// <summary>
-        /// txtadminid control.
+        /// Label2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtadminid;
+        protected global::System.Web.UI.WebControls.Label Label2;
 
         /// <summary>
-        /// RFVAdminID control.
+        /// txtnotification control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVAdminID;
-
-        /// <summary>
-        /// txtpassword control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtpassword;
-
-        /// <summary>
-        /// RFVPassword control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVPassword;
+        protected global::System.Web.UI.WebControls.TextBox txtnotification;
 
         /// <summary>
         /// Button1 control.

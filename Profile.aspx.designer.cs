@@ -24,13 +24,13 @@ namespace AdminPortal
         protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
-        /// Image1 control.
+        /// imgadm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Image1;
+        protected global::System.Web.UI.WebControls.Image imgadm;
 
         /// <summary>
         /// btnrmvpic control.
@@ -267,6 +267,15 @@ namespace AdminPortal
         protected global::System.Web.UI.WebControls.TextBox txtpassword;
 
         /// <summary>
+        /// btnedit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnedit;
+
+        /// <summary>
         /// btncancel control.
         /// </summary>
         /// <remarks>
@@ -276,12 +285,12 @@ namespace AdminPortal
         protected global::System.Web.UI.WebControls.Button btncancel;
 
         /// <summary>
-        /// btnedit control.
+        /// btnsaved control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnedit;
+        protected global::System.Web.UI.WebControls.Button btnsaved;
     }
 }

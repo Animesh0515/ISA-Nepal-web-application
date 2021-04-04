@@ -24,10 +24,10 @@ namespace AdminPortal
             string password = txtpassword.Text.Trim();
             List<LoginModel> loginModellst = Utility.Userdetails();
             loginModel = loginModellst.Where(x => x.Role == "admin" && x.Username== adminid && x.Password== password).FirstOrDefault();
-            Global.ID = loginModel.UserId;
             if (loginModel != null)
             {
-                Response.Redirect("Bookings.aspx");
+                Global.ID = loginModel.UserId;
+                 Response.Redirect("Bookings.aspx");
             }
             else
             {

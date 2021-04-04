@@ -1814,6 +1814,8 @@
     <Content Include="fontawesome\webfonts\fa-regular-400.svg" />
     <Content Include="fontawesome\webfonts\fa-solid-900.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Gallery\Videos\ABOVE AVERAGE - Jay Author x Zac Rai %28OFFICIAL MUSIC VIDEO%29.mp4" />
+    <Content Include="Gallery\Videos\video.mp4" />
     <Content Include="Global.asax" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -1884,6 +1886,9 @@
     <Content Include="Bookings.aspx" />
     <Content Include="Members.aspx" />
     <Content Include="Profile.aspx" />
+    <Content Include="Notification.aspx" />
+    <Content Include="ISAGallery.aspx" />
+    <Content Include="Calendar.aspx" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="images\adminuser.png" />
     <Content Include="Scripts\bootstrap.js" />
@@ -1947,9 +1952,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Model\CalendarModel.cs" />
     <Compile Include="Model\CourtBookingModel.cs" />
     <Compile Include="Model\DatabaseConnectionModel.cs" />
+    <Compile Include="Model\ImageModel.cs" />
     <Compile Include="Model\LoginModel.cs" />
+    <Compile Include="Model\NotificationModel.cs" />
     <Compile Include="Model\TrainingBookingModel.cs" />
     <Compile Include="Model\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -2003,9 +2011,31 @@
     <Compile Include="Profile.aspx.designer.cs">
       <DependentUpon>Profile.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Notification.aspx.cs">
+      <DependentUpon>Notification.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Notification.aspx.designer.cs">
+      <DependentUpon>Notification.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ISAGallery.aspx.cs">
+      <DependentUpon>ISAGallery.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ISAGallery.aspx.designer.cs">
+      <DependentUpon>ISAGallery.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Calendar.aspx.cs">
+      <DependentUpon>Calendar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Calendar.aspx.designer.cs">
+      <DependentUpon>Calendar.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Gallery\Images\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
