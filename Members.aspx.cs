@@ -11,21 +11,31 @@ namespace AdminPortal
 {
     public partial class WebForm3 : System.Web.UI.Page
     {
-        string connectionstring = DatabaseConnectionModel.connectionstring();
+        string connectionstring = DatabaseConnectionModel.ConnectionString();
+        static bool search ;
+        int index;
+        static UserModel userModel = new UserModel();
+        static List<UserModel> userslst = new List<UserModel>();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if(! this.IsPostBack)
             {
+                userslst.Clear();
+                search = false;
                 this.Bindgrid();
+                
+
             }
 
         }
         private void Bindgrid()
         {
-            List<UserModel> userslst = new List<UserModel>();
+            int counter = 0;
+           
             MySqlConnection conn = new MySqlConnection(connectionstring);
             MySqlCommand cmd = conn.CreateCommand();
-            cmd.CommandText = "Select User_Id, Role, First_Name, Last_Name,  Email, Phone_Number, DateOfBirth, Username, Password, Gender, Age, Address, JoinedDate from users where Role='user'";
+            cmd.CommandText = "Select User_Id, Role, First_Name, Last_Name,  Email, Phone_Number, DateOfBirth, Username, Password, Gender, Age, Address, JoinedDate from users where Role='user' and Flag='A'";
             try
             {
                 conn.Open();
@@ -39,20 +49,25 @@ namespace AdminPortal
                     users.LastName = data["Last_Name"].ToString();
                     users.Email = data["Email"].ToString();
                     users.PhoneNumber = int.Parse(data["Phone_Number"].ToString());
-                    users.DateofBirth = data["DateOfBirth"].ToString();
+                    DateTime dob = DateTime.Parse(data["DateOfBirth"].ToString());
+                    users.DateofBirth = dob.ToString("yyyy-MM-dd");
                     users.Username = data["Username"].ToString();
                     users.Password = data["Password"].ToString();
                     users.Gender = data["Gender"].ToString();
                     users.Age = int.Parse(data["Age"].ToString());
                     users.Address = data["Address"].ToString();
-                    users.JoinedDate = data["JoinedDate"].ToString();
-                    userslst.Add(users);
+                    DateTime jd= DateTime.Parse(data["JoinedDate"].ToString());
+                    users.JoinedDate = jd.ToString("yyyy -MM-dd");
+                    //users.RowIndex = counter++;
+                   userslst.Add(users);
+                    
                 }
                 conn.Close();
                 dgvmemebers.DataSource = userslst;
                 dgvmemebers.DataBind();
+
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine(e);
             }
@@ -60,9 +75,12 @@ namespace AdminPortal
         }
         protected void OnRowEditing(object sender, GridViewEditEventArgs e)
         {
-            dgvmemebers.EditIndex = e.NewEditIndex;
-            this.Bindgrid();
+            int ID;
+           dgvmemebers.EditIndex = e.NewEditIndex;
+           ID = int.Parse(dgvmemebers.DataKeys[e.NewEditIndex].Values[0].ToString());
+           Response.Redirect("MemberProfile.aspx?UserID="+ID);
             
+
         }
 
         protected void OnRowUpdating(object sender, GridViewUpdateEventArgs e)
@@ -106,6 +124,7 @@ namespace AdminPortal
         protected void OnRowCancelingEdit(object sender, EventArgs e)
         {
             dgvmemebers.EditIndex = -1;
+            userslst.Clear();
             this.Bindgrid();
         }
         protected void OnRowDataBound(object sender, GridViewRowEventArgs e)
@@ -122,7 +141,7 @@ namespace AdminPortal
 
             using (MySqlConnection con = new MySqlConnection(connectionstring))
             {
-                using (MySqlCommand cmd = new MySqlCommand("DELETE FROM Dish WHERE Dish_ID =" + ID))
+                using (MySqlCommand cmd = new MySqlCommand("Update  users set Flag='D' WHERE User_ID =" + ID))
                 {
 
                     cmd.Connection = con;
@@ -131,12 +150,58 @@ namespace AdminPortal
                     con.Close();
                 }
             }
+            userslst.Clear();
             this.Bindgrid();
         }
 
+        protected void btnAdd_Click(object sender, EventArgs e)
+        {
+            string data = txtsearch.Text;
+            List<UserModel> usrlst = new List<UserModel>();
+            MySqlConnection conn = new MySqlConnection(connectionstring);
+            MySqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "Select User_Id, Role, First_Name, Last_Name,  Email, Phone_Number, DateOfBirth, Username, Password, Gender, Age, Address, JoinedDate from users where Upper(First_Name)=Upper('"+data+ "') or Upper(Last_Name)=Upper('" + data + "') or Upper(Username)=Upper('" + data + "') and Role='user' and Flag='A'";
+            try
+            {
+                conn.Open();
+                MySqlDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    UserModel users = new UserModel();
+                    users.UserId = int.Parse(rdr["User_Id"].ToString());
+                    users.Role = rdr["Role"].ToString();
+                    users.FirstName = rdr["First_Name"].ToString();
+                    users.LastName = rdr["Last_Name"].ToString();
+                    users.Email = rdr["Email"].ToString();
+                    users.PhoneNumber = int.Parse(rdr["Phone_Number"].ToString());
+                    DateTime dob = DateTime.Parse(rdr["DateOfBirth"].ToString());
+                    users.DateofBirth = dob.ToString("yyyy-MM-dd");
+                    users.Username = rdr["Username"].ToString();
+                    users.Password = rdr["Password"].ToString();
+                    users.Gender = rdr["Gender"].ToString();
+                    users.Age = int.Parse(rdr["Age"].ToString());
+                    users.Address = rdr["Address"].ToString();
+                    DateTime jd = DateTime.Parse(rdr["JoinedDate"].ToString());
+                    users.JoinedDate = jd.ToString("yyyy-MM-dd");
+                    //index=users.RowIndex;
+
+                    usrlst.Add(users);
+                    userModel = userslst.Where(x => x.Username == users.Username).FirstOrDefault();
+                }
+                conn.Close();
+                
+                dgvmemebers.DataSource = usrlst;
+                //dgvmemebers.AutoGenerateEditButton = false;
+                //dgvmemebers.AutoGenerateDeleteButton = false;
+                dgvmemebers.DataBind();
+                search = true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
 
 
-      
-        
+        }
     }
 }

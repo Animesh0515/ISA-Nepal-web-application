@@ -22,11 +22,12 @@ namespace AdminPortal
             LoginModel loginModel = new LoginModel();
             string adminid = txtadminid.Text.Trim();
             string password = txtpassword.Text.Trim();
-            List<LoginModel> loginModellst = Utility.Userdetails();
-            loginModel = loginModellst.Where(x => x.Role == "admin" && x.Username== adminid && x.Password== password).FirstOrDefault();
-            if(loginModel != null)
+             List<LoginModel> loginModellst = Utility.Userdetails();
+            loginModel = loginModellst.Where(x => x.Role == "admin" && x.Username== adminid && x.Password== Base64Encode(password)).FirstOrDefault();
+            if (loginModel != null)
             {
-                Response.Redirect("Bookings.aspx");
+                Global.ID = loginModel.UserId;
+                 Response.Redirect("Bookings.aspx");
             }
             else
             {
@@ -35,9 +36,14 @@ namespace AdminPortal
             }
 
 
-
-
+            
 
         }
+        public static string Base64Encode(string plainText)
+        {
+            var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(plainText);
+            return System.Convert.ToBase64String(plainTextBytes);
+        }
+
     }
 }

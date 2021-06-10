@@ -33,6 +33,15 @@ namespace AdminPortal
         protected global::System.Web.UI.WebControls.TextBox txtadminid;
 
         /// <summary>
+        /// RFVAdminID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVAdminID;
+
+        /// <summary>
         /// txtpassword control.
         /// </summary>
         /// <remarks>
@@ -40,6 +49,15 @@ namespace AdminPortal
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtpassword;
+
+        /// <summary>
+        /// RFVPassword control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVPassword;
 
         /// <summary>
         /// Button1 control.

@@ -89,6 +89,7 @@
     </Reference>
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -1814,6 +1815,7 @@
     <Content Include="fontawesome\webfonts\fa-regular-400.svg" />
     <Content Include="fontawesome\webfonts\fa-solid-900.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Gallery\Videos\ABOVE AVERAGE - Jay Author x Zac Rai %28OFFICIAL MUSIC VIDEO%29.mp4" />
     <Content Include="Global.asax" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -1878,10 +1880,19 @@
     <Content Include="fontawesome\webfonts\fa-solid-900.woff" />
     <Content Include="fontawesome\webfonts\fa-solid-900.woff2" />
     <Content Include="images\isa.png" />
+    <Content Include="images\profile.png" />
     <Content Include="sweet alert\sweetalert2.all.js" />
     <Content Include="Login.aspx" />
     <Content Include="Bookings.aspx" />
-    <Content Include="Memebers.aspx" />
+    <Content Include="Members.aspx" />
+    <Content Include="Profile.aspx" />
+    <Content Include="Notification.aspx" />
+    <Content Include="ISAGallery.aspx" />
+    <Content Include="Events.aspx" />
+    <Content Include="Settings.aspx" />
+    <Content Include="MemberProfile.aspx" />
+    <Content Include="Image.aspx" />
+    <Content Include="video.aspx" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="images\adminuser.png" />
     <Content Include="Scripts\bootstrap.js" />
@@ -1945,9 +1956,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Model\CalendarModel.cs" />
     <Compile Include="Model\CourtBookingModel.cs" />
+    <Compile Include="Model\CourtBookingTime.cs" />
     <Compile Include="Model\DatabaseConnectionModel.cs" />
+    <Compile Include="Model\ImageModel.cs" />
     <Compile Include="Model\LoginModel.cs" />
+    <Compile Include="Model\NotificationModel.cs" />
     <Compile Include="Model\TrainingBookingModel.cs" />
     <Compile Include="Model\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1987,16 +2002,73 @@
     <Compile Include="Bookings.aspx.designer.cs">
       <DependentUpon>Bookings.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Memebers.aspx.cs">
-      <DependentUpon>Memebers.aspx</DependentUpon>
+    <Compile Include="Members.aspx.cs">
+      <DependentUpon>Members.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Memebers.aspx.designer.cs">
-      <DependentUpon>Memebers.aspx</DependentUpon>
+    <Compile Include="Members.aspx.designer.cs">
+      <DependentUpon>Members.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Profile.aspx.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile.aspx.designer.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Notification.aspx.cs">
+      <DependentUpon>Notification.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Notification.aspx.designer.cs">
+      <DependentUpon>Notification.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ISAGallery.aspx.cs">
+      <DependentUpon>ISAGallery.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ISAGallery.aspx.designer.cs">
+      <DependentUpon>ISAGallery.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Events.aspx.cs">
+      <DependentUpon>Events.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Events.aspx.designer.cs">
+      <DependentUpon>Events.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Settings.aspx.cs">
+      <DependentUpon>Settings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Settings.aspx.designer.cs">
+      <DependentUpon>Settings.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MemberProfile.aspx.cs">
+      <DependentUpon>MemberProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MemberProfile.aspx.designer.cs">
+      <DependentUpon>MemberProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Image.aspx.cs">
+      <DependentUpon>Image.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Image.aspx.designer.cs">
+      <DependentUpon>Image.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="video.aspx.cs">
+      <DependentUpon>video.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="video.aspx.designer.cs">
+      <DependentUpon>video.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Gallery\Images\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

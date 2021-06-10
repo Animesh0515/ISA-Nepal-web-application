@@ -1,4 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="AdminPortal.WebForm1" %>
+﻿
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="AdminPortal.WebForm1" %>
 
 <!DOCTYPE html>
 
@@ -27,7 +28,7 @@
                 icon: 'error',
                 title: 'Invalid username or password',
                 text: 'User Not Found',
-               
+
             })
         }
     </script>
@@ -60,13 +61,17 @@
                   </div>
                   <div class="row">
                      <div class="col">
-                        <label>Admin ID</label>
+                        <label>Username</label>
                         <div class="form-group">
                            <asp:TextBox CssClass="form-control" ID="txtadminid" runat="server" placeholder="Admin ID"></asp:TextBox>
+            <asp:RequiredFieldValidator runat="server" ID="RFVAdminID" ControlToValidate="txtadminid" ErrorMessage="Please Enter the Username" style="color: red; visibility: visible; font-size:small"/>
+
                         </div>
                         <label>Password</label>
                         <div class="form-group">
                            <asp:TextBox CssClass="form-control" ID="txtpassword" runat="server" placeholder="Password" TextMode="Password"></asp:TextBox>
+            <asp:RequiredFieldValidator runat="server" ID="RFVPassword" ControlToValidate="txtpassword" ErrorMessage="Please Enter the Password" style="color: red; visibility: visible; font-size:small"/>
+
                         </div>
                         <div class="form-group">
                            <asp:Button class="btn btn-success btn-block btn-lg" ID="Button1" runat="server" Text="Login" OnClick="Button1_Click"  />

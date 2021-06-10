@@ -22,6 +22,7 @@ namespace AdminPortal.Model
         public int  Age { get; set; }
         public string  Address { get; set; }
         public string JoinedDate { get; set; }
+        
 
     }
 }

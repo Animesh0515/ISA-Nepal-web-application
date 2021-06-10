@@ -18,5 +18,20 @@ namespace AdminPortal
         {
             Response.Redirect("login.aspx");
         }
+
+        protected void LinkButton2_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Profile.aspx");
+        }
+
+        protected void LinkButton1_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Notification.aspx");
+        }
+
+        protected void LinkButton3_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Settings.aspx");
+        }
     }
 }
