@@ -35,7 +35,7 @@ namespace AdminPortal
            
             MySqlConnection conn = new MySqlConnection(connectionstring);
             MySqlCommand cmd = conn.CreateCommand();
-            cmd.CommandText = "Select User_Id, Role, First_Name, Last_Name,  Email, Phone_Number, DateOfBirth, Username, Password, Gender, Age, Address, JoinedDate from users where Role='user'";
+            cmd.CommandText = "Select User_Id, Role, First_Name, Last_Name,  Email, Phone_Number, DateOfBirth, Username, Password, Gender, Age, Address, JoinedDate from users where Role='user' and Flag='A'";
             try
             {
                 conn.Open();
@@ -58,7 +58,7 @@ namespace AdminPortal
                     users.Address = data["Address"].ToString();
                     DateTime jd= DateTime.Parse(data["JoinedDate"].ToString());
                     users.JoinedDate = jd.ToString("yyyy -MM-dd");
-                    users.RowIndex = counter++;
+                    //users.RowIndex = counter++;
                    userslst.Add(users);
                     
                 }
@@ -75,18 +75,12 @@ namespace AdminPortal
         }
         protected void OnRowEditing(object sender, GridViewEditEventArgs e)
         {
-            if (!search)
-            {
-
-                dgvmemebers.EditIndex = e.NewEditIndex;
-            }
-            else
-            {
-                dgvmemebers.EditIndex = userModel.RowIndex;
-                userslst.Clear();
-            }
-            this.Bindgrid();
+            int ID;
+           dgvmemebers.EditIndex = e.NewEditIndex;
+           ID = int.Parse(dgvmemebers.DataKeys[e.NewEditIndex].Values[0].ToString());
+           Response.Redirect("MemberProfile.aspx?UserID="+ID);
             
+
         }
 
         protected void OnRowUpdating(object sender, GridViewUpdateEventArgs e)
@@ -147,7 +141,7 @@ namespace AdminPortal
 
             using (MySqlConnection con = new MySqlConnection(connectionstring))
             {
-                using (MySqlCommand cmd = new MySqlCommand("DELETE FROM users WHERE User_ID =" + ID))
+                using (MySqlCommand cmd = new MySqlCommand("Update  users set Flag='D' WHERE User_ID =" + ID))
                 {
 
                     cmd.Connection = con;
@@ -156,6 +150,7 @@ namespace AdminPortal
                     con.Close();
                 }
             }
+            userslst.Clear();
             this.Bindgrid();
         }
 
@@ -165,7 +160,7 @@ namespace AdminPortal
             List<UserModel> usrlst = new List<UserModel>();
             MySqlConnection conn = new MySqlConnection(connectionstring);
             MySqlCommand cmd = conn.CreateCommand();
-            cmd.CommandText = "Select User_Id, Role, First_Name, Last_Name,  Email, Phone_Number, DateOfBirth, Username, Password, Gender, Age, Address, JoinedDate from users where Upper(First_Name)=Upper('"+data+ "') or Upper(Last_Name)=Upper('" + data + "') or Upper(Username)=Upper('" + data + "') and Role='user'";
+            cmd.CommandText = "Select User_Id, Role, First_Name, Last_Name,  Email, Phone_Number, DateOfBirth, Username, Password, Gender, Age, Address, JoinedDate from users where Upper(First_Name)=Upper('"+data+ "') or Upper(Last_Name)=Upper('" + data + "') or Upper(Username)=Upper('" + data + "') and Role='user' and Flag='A'";
             try
             {
                 conn.Open();
@@ -188,7 +183,7 @@ namespace AdminPortal
                     users.Address = rdr["Address"].ToString();
                     DateTime jd = DateTime.Parse(rdr["JoinedDate"].ToString());
                     users.JoinedDate = jd.ToString("yyyy-MM-dd");
-                    index=users.RowIndex;
+                    //index=users.RowIndex;
 
                     usrlst.Add(users);
                     userModel = userslst.Where(x => x.Username == users.Username).FirstOrDefault();

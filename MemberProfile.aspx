@@ -1,39 +1,28 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Profile.aspx.cs" Inherits="AdminPortal.WebForm4" %>
-
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="MemberProfile.aspx.cs" Inherits="AdminPortal.WebForm9" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-     
-</asp:Content>
+    </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">
         <div class="row" style="width:1000px; height: 500px">
             <div class="card" style="width: 400px; height: 400px;">
                 <div class="row" style="padding-left: 20px">
                     &nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:Label ID="Label1" runat="server" Style="padding-top: 20px" Font-Bold="True"></asp:Label>
-                    <br />
-                    <%--<asp:Label ID="Label2" runat="server" style="padding-top:20px" Text="Head Coach" ></asp:Label>--%>
-                    <div style="padding-left: 130px; padding-top: 20px">
+            <asp:Label ID="Label1" runat="server" Style="padding-top: 20px" Text="" Font-Bold="True" Size="40" ></asp:Label>
+                    <div style="padding-left: 110px; padding-top: 20px">
                         <asp:Image ID="imgadm" runat="server" Height="200px" Width="200px" />
                     </div>
 
                     <%--<img src="images/profile.png"  style="height:200px; width:350px; padding-left:200px; "/>--%>
                 </div>
                 <div class="card-body">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Button ID="btnrmvpic" runat="server" CssClass="btn-danger" Text="Remove picture" Width="127px" OnClick="btnrmvpic_Click" />
-
-                    <br />
-
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      
                     &nbsp;&nbsp;
       <br />
-                    <asp:Button ID="btnsave" class="btn-primary" runat="server" Text="Save" Width="127px" OnClick="btnsave_Click" />
 
                     &nbsp;&nbsp;
 
-      <asp:FileUpload ID="FileImagesave" class="btn-outline-primary" runat="server" Width="212px" />
-                    <asp:Literal ID="ltsave" runat="server"></asp:Literal>
-
-
+      
 
 
 
@@ -84,12 +73,10 @@
                         <br />
                         <asp:Label ID="Label11" runat="server" Text="Address"></asp:Label>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <asp:Label ID="Label12" runat="server" Text="Password"></asp:Label>
                         <br />
-                        <asp:TextBox ID="txtaddress" runat="server" Width="224px"></asp:TextBox>
+                        <asp:TextBox ID="addresstxt" runat="server" Width="224px"></asp:TextBox>
                         &nbsp;&nbsp;&nbsp;
-                        <asp:TextBox ID="txtpassword" runat="server" Width="208px" TextMode="Password"></asp:TextBox>
-                    </div>
+                        </div>
                     <div class="card-footer text-muted">
                         <asp:Button ID="btnedit" class="btn btn-warning" runat="server" Text="Edit" style="width: 87px" OnClick="btnedit_Click" />
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -104,7 +91,6 @@
                     </div>
                 </div>
             </div>
-        </div>
+            </div>
     </div>
-
 </asp:Content>

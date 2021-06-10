@@ -28,5 +28,10 @@ namespace AdminPortal
         {
             Response.Redirect("Notification.aspx");
         }
+
+        protected void LinkButton3_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Settings.aspx");
+        }
     }
 }

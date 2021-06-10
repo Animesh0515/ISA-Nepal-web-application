@@ -59,7 +59,8 @@ namespace AdminPortal
                 DateTime jd=Convert.ToDateTime(rdr["JoinedDate"].ToString());
                 txtjoineddate.Text=jd.ToString("yyyy-MM-dd");
                 txtaddress.Text = rdr["Address"].ToString();
-                imgadm.ImageUrl = rdr["ImageUrl"].ToString();
+                byte[] bytes = Convert.FromBase64String(rdr["ImageUrl"].ToString());
+                imgadm.ImageUrl = "data:image/jpeg;base64," + Convert.ToBase64String(bytes);
                 txtpassword.Text = "";
 
             }
@@ -70,17 +71,22 @@ namespace AdminPortal
             if(FileImagesave.HasFile)
             {
                 string imgfile = Path.GetFileName(FileImagesave.PostedFile.FileName);
-                FileImagesave.SaveAs("G:/FYP/ISA NEPAL(Admin)/AdminPortal/images/" + imgfile);
+                //FileImagesave.SaveAs("G:/FYP/ISA NEPAL(Admin)/AdminPortal/images/" + imgfile);
+                System.IO.Stream fs = FileImagesave.PostedFile.InputStream;
+                System.IO.BinaryReader br = new System.IO.BinaryReader(fs);
+                Byte[] bytes = br.ReadBytes((Int32)fs.Length);
+                string base64String = Convert.ToBase64String(bytes, 0, bytes.Length);
                 MySqlConnection conn = new MySqlConnection(connectiostring);
                 MySqlCommand cmd = conn.CreateCommand();
-                cmd.CommandText="Update  users set ImageUrl='"+ "images/" + imgfile+"' where User_Id='"+ Global.ID+"'";
+                cmd.CommandText="Update  users set ImageUrl='"+ base64String + "' where User_Id='"+ Global.ID+"'";
                 try
                 {
                     conn.Open();
                     cmd.ExecuteNonQuery();
-                    ltsave.Text = "Image saved.";
+                    ltsave.Text = "";
                     conn.Close();
                     this.GetProfile();
+                    ClientScript.RegisterStartupScript(this.GetType(), "randontext", "imagemsg(1)", true); 
                 }
                 catch(Exception ex)
                 {

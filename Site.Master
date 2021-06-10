@@ -32,6 +32,8 @@
                 'Your changes has been saved!',
                 'success'
             )
+            
+            
         }
 
         function notifimsg() {
@@ -41,6 +43,27 @@
                 'success'
             )
         }
+        function imagemsg(id) {
+            if (id = 1) {
+                Swal.fire(
+                    'Success',
+                    'Image has been saved',
+                    'success'
+                )
+            }
+            if (id = 2) {
+                Swal.fire(
+                    'Success',
+                    'Video has been saved',
+                    'success'
+                )
+
+            }
+            
+        }
+        
+
+        
     </script>
     
 
@@ -68,7 +91,7 @@
                             <a class="nav-link" href="Bookings.aspx">Bookings</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Calendar</a>
+                            <a class="nav-link" href="Events.aspx">Events</a>
                         </li>
                         <li class="nav-item active">
                             <a class="nav-link" href="ISAGallery.aspx">Gallery</a>
@@ -89,7 +112,7 @@
                             <asp:LinkButton class="nav-link" ID="LinkButton2" runat="server" OnClick="LinkButton2_Click">My Profile</asp:LinkButton>
                         </li>
                         <li class="nav-item active">
-                            <asp:LinkButton class="nav-link" ID="LinkButton3" runat="server">About Us</asp:LinkButton>
+                            <asp:LinkButton class="nav-link" ID="LinkButton3" runat="server" OnClick="LinkButton3_Click">Settings</asp:LinkButton>
                         </li>
  
                         <li class="nav-item active">
